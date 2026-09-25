@@ -1,0 +1,23 @@
+[
+  {
+    "tag": "Tutoriel",
+    "date": "18 sept. 2026",
+    "title": "5 commandes Git que tout développeur doit connaître",
+    "excerpt": "Git peut vite devenir intimidant. Voici les commandes essentielles pour ne jamais rester bloqué.",
+    "content": "Git peut vite devenir intimidant quand on débute. Au-delà de git add, commit et push, quelques commandes changent la vie au quotidien : git stash pour mettre de côté un travail en cours sans committer, git log --oneline pour un historique lisible, git rebase -i pour nettoyer ses commits avant une pull request, git bisect pour retrouver le commit responsable d'un bug, et git reflog qui sauve la mise quand on croit avoir tout perdu. Direction le lexique ci-dessus pour la commande d'installation si Git n'est pas encore sur votre machine."
+  },
+  {
+    "tag": "Actualité",
+    "date": "10 sept. 2026",
+    "title": "Pourquoi apprendre Docker reste incontournable en 2026",
+    "excerpt": "Malgré la montée des alternatives, Docker reste la porte d'entrée la plus simple vers les conteneurs.",
+    "content": "Malgré la montée d'alternatives comme Podman, Docker reste la porte d'entrée la plus simple vers le monde des conteneurs. Sa promesse originale — « ça marche sur ma machine, donc ça marchera partout » — n'a pas pris une ride. Pour un développeur, savoir empaqueter une application dans une image Docker reste une compétence de base recherchée, que ce soit pour du déploiement local, de l'intégration continue ou de la préparation à Kubernetes."
+  },
+  {
+    "tag": "Comparatif",
+    "date": "2 sept. 2026",
+    "title": "Linux vs Windows pour développer : le vrai comparatif",
+    "excerpt": "Terminal natif, gestion des paquets, performance... ce qui fait vraiment la différence au quotidien.",
+    "content": "Le débat Linux vs Windows pour le développement revient sans cesse. Linux a l'avantage d'un terminal natif puissant et d'une gestion des paquets (apt, dnf, pacman) qui colle exactement à l'environnement de production, souvent lui-même sous Linux. Windows a rattrapé une grande partie de son retard grâce à WSL, qui fait tourner un vrai noyau Linux en parallèle. Au final, le choix dépend surtout de l'écosystème visé : développement web/serveur → Linux a l'avantage naturel ; développement .NET ou jeux vidéo → Windows reste très pertinent."
+  }
+]

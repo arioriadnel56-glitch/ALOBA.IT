@@ -1,0 +1,472 @@
+[
+  {
+    "t": "API",
+    "c": "Réseau",
+    "d": "Interface de programmation permettant à deux logiciels de communiquer entre eux selon des règles définies."
+  },
+  {
+    "t": "Architecture Client-Serveur",
+    "c": "Réseau",
+    "d": "Modèle où un programme (client) demande un service ou une ressource à un autre programme (serveur)."
+  },
+  {
+    "t": "Cache",
+    "c": "Système",
+    "d": "Zone de stockage temporaire rapide qui conserve des données fréquemment utilisées pour accélérer leur accès."
+  },
+  {
+    "t": "Cloud Computing",
+    "c": "Cloud",
+    "d": "Fourniture de ressources informatiques (stockage, calcul, logiciels) à la demande via Internet."
+  },
+  {
+    "t": "DNS",
+    "c": "Réseau",
+    "d": "Système qui traduit les noms de domaine (ex: google.com) en adresses IP compréhensibles par les machines."
+  },
+  {
+    "t": "Firewall",
+    "c": "Sécurité",
+    "d": "Dispositif qui filtre le trafic réseau entrant et sortant selon des règles de sécurité définies."
+  },
+  {
+    "t": "Chiffrement",
+    "c": "Sécurité",
+    "d": "Procédé qui transforme une donnée lisible en une donnée illisible sans une clé de déchiffrement."
+  },
+  {
+    "t": "Base de données",
+    "c": "Données",
+    "d": "Ensemble structuré de données organisées pour être facilement consultées, gérées et mises à jour."
+  },
+  {
+    "t": "SQL",
+    "c": "Données",
+    "d": "Langage standardisé utilisé pour interroger et manipuler les données dans une base relationnelle."
+  },
+  {
+    "t": "NoSQL",
+    "c": "Données",
+    "d": "Famille de bases de données non relationnelles, conçues pour des données flexibles ou massives."
+  },
+  {
+    "t": "HTTP",
+    "c": "Réseau",
+    "d": "Protocole de communication utilisé pour transférer des pages web entre un client et un serveur."
+  },
+  {
+    "t": "HTTPS",
+    "c": "Sécurité",
+    "d": "Version sécurisée du protocole HTTP, chiffrée grâce à TLS/SSL."
+  },
+  {
+    "t": "VPN",
+    "c": "Sécurité",
+    "d": "Réseau privé virtuel qui crée un tunnel chiffré pour sécuriser une connexion sur un réseau public."
+  },
+  {
+    "t": "Adresse IP",
+    "c": "Réseau",
+    "d": "Identifiant numérique unique attribué à chaque appareil connecté à un réseau."
+  },
+  {
+    "t": "Routeur",
+    "c": "Réseau",
+    "d": "Équipement qui achemine les paquets de données entre différents réseaux."
+  },
+  {
+    "t": "Load Balancer",
+    "c": "Système",
+    "d": "Composant qui répartit le trafic entrant entre plusieurs serveurs pour éviter la surcharge."
+  },
+  {
+    "t": "Conteneur (Docker)",
+    "c": "DevOps",
+    "d": "Environnement léger et isolé qui embarque une application avec toutes ses dépendances.",
+    "install": [
+      {
+        "m": "Script officiel (toutes distros)",
+        "cmd": "curl -fsSL https://get.docker.com | sudo sh"
+      },
+      {
+        "m": "apt (Debian/Ubuntu)",
+        "cmd": "sudo apt install docker.io -y"
+      },
+      {
+        "m": "dnf (Fedora)",
+        "cmd": "sudo dnf install docker -y"
+      }
+    ]
+  },
+  {
+    "t": "Kubernetes",
+    "c": "DevOps",
+    "d": "Plateforme d'orchestration qui automatise le déploiement et la gestion de conteneurs à grande échelle.",
+    "install": [
+      {
+        "m": "snap (kubectl, toutes distros)",
+        "cmd": "sudo snap install kubectl --classic"
+      },
+      {
+        "m": "apt (Debian/Ubuntu)",
+        "cmd": "sudo apt install kubectl -y"
+      }
+    ]
+  },
+  {
+    "t": "CI/CD",
+    "c": "DevOps",
+    "d": "Pratique d'intégration et de déploiement continus permettant de livrer du code fréquemment et de façon fiable."
+  },
+  {
+    "t": "Git",
+    "c": "DevOps",
+    "d": "Système de contrôle de version distribué qui suit l'historique des modifications d'un code source.",
+    "install": [
+      {
+        "m": "apt (Debian/Ubuntu)",
+        "cmd": "sudo apt install git -y"
+      },
+      {
+        "m": "dnf (Fedora)",
+        "cmd": "sudo dnf install git -y"
+      },
+      {
+        "m": "pacman (Arch)",
+        "cmd": "sudo pacman -S git"
+      }
+    ]
+  },
+  {
+    "t": "Framework",
+    "c": "Développement",
+    "d": "Ensemble d'outils et de bibliothèques préétabli qui structure le développement d'une application."
+  },
+  {
+    "t": "Algorithme",
+    "c": "Développement",
+    "d": "Suite finie et ordonnée d'instructions permettant de résoudre un problème ou d'effectuer une tâche."
+  },
+  {
+    "t": "Compilateur",
+    "c": "Développement",
+    "d": "Programme qui traduit un code source écrit dans un langage en code exécutable par une machine."
+  },
+  {
+    "t": "Machine Virtuelle",
+    "c": "Système",
+    "d": "Environnement logiciel qui simule un ordinateur complet, isolé du système hôte."
+  },
+  {
+    "t": "Système d'exploitation",
+    "c": "Système",
+    "d": "Logiciel de base qui gère les ressources matérielles et permet l'exécution des programmes."
+  },
+  {
+    "t": "RAM",
+    "c": "Matériel",
+    "d": "Mémoire vive qui stocke temporairement les données utilisées par les programmes en cours d'exécution."
+  },
+  {
+    "t": "SSD",
+    "c": "Matériel",
+    "d": "Disque de stockage à mémoire flash, plus rapide et plus résistant qu'un disque dur mécanique."
+  },
+  {
+    "t": "Processeur (CPU)",
+    "c": "Matériel",
+    "d": "Composant qui exécute les instructions des programmes et effectue les calculs de l'ordinateur."
+  },
+  {
+    "t": "GPU",
+    "c": "Matériel",
+    "d": "Processeur graphique optimisé pour le calcul parallèle, utilisé pour l'affichage et l'intelligence artificielle."
+  },
+  {
+    "t": "Malware",
+    "c": "Sécurité",
+    "d": "Logiciel malveillant conçu pour endommager, espionner ou prendre le contrôle d'un système."
+  },
+  {
+    "t": "Phishing",
+    "c": "Sécurité",
+    "d": "Technique frauduleuse visant à tromper un utilisateur pour lui voler des informations sensibles."
+  },
+  {
+    "t": "Ransomware",
+    "c": "Sécurité",
+    "d": "Logiciel malveillant qui chiffre les données d'une victime et exige une rançon pour les débloquer."
+  },
+  {
+    "t": "Authentification à deux facteurs",
+    "c": "Sécurité",
+    "d": "Méthode de sécurité exigeant deux preuves d'identité distinctes pour accéder à un compte."
+  },
+  {
+    "t": "Intelligence Artificielle",
+    "c": "IA",
+    "d": "Ensemble de techniques permettant à une machine de simuler des capacités cognitives humaines."
+  },
+  {
+    "t": "Machine Learning",
+    "c": "IA",
+    "d": "Sous-domaine de l'IA où un système apprend à partir de données sans être explicitement programmé."
+  },
+  {
+    "t": "Réseau de neurones",
+    "c": "IA",
+    "d": "Modèle informatique inspiré du cerveau humain, composé de couches de nœuds interconnectés."
+  },
+  {
+    "t": "Big Data",
+    "c": "Données",
+    "d": "Ensemble de données si volumineux et complexe qu'il nécessite des outils spécifiques pour être traité."
+  },
+  {
+    "t": "API REST",
+    "c": "Réseau",
+    "d": "Style d'architecture pour concevoir des API basées sur les méthodes standards du protocole HTTP."
+  },
+  {
+    "t": "Microservices",
+    "c": "Développement",
+    "d": "Architecture logicielle découpant une application en petits services indépendants et déployables séparément."
+  },
+  {
+    "t": "Latence",
+    "c": "Réseau",
+    "d": "Temps écoulé entre l'envoi d'une requête et la réception de sa réponse sur un réseau."
+  },
+  {
+    "t": "Bande passante",
+    "c": "Réseau",
+    "d": "Quantité maximale de données pouvant transiter sur une connexion réseau par unité de temps."
+  },
+  {
+    "t": "Backup",
+    "c": "Système",
+    "d": "Copie de sauvegarde des données permettant de les restaurer en cas de perte ou de panne."
+  },
+  {
+    "t": "Cookie",
+    "c": "Réseau",
+    "d": "Petit fichier stocké par un navigateur pour conserver des informations sur une session utilisateur."
+  },
+  {
+    "t": "Open Source",
+    "c": "Développement",
+    "d": "Logiciel dont le code source est public et peut être librement consulté, modifié et redistribué."
+  },
+  {
+    "t": "API Key",
+    "c": "Sécurité",
+    "d": "Clé unique utilisée pour authentifier et autoriser l'accès à une API."
+  },
+  {
+    "t": "Blockchain",
+    "c": "Données",
+    "d": "Registre numérique décentralisé et infalsifiable qui enregistre des transactions de façon chiffrée."
+  },
+  {
+    "t": "IoT",
+    "c": "Réseau",
+    "d": "Internet des objets : ensemble d'appareils physiques connectés capables d'échanger des données."
+  },
+  {
+    "t": "Middleware",
+    "c": "Développement",
+    "d": "Logiciel intermédiaire qui facilite la communication entre différentes applications ou composants."
+  },
+  {
+    "t": "UX/UI",
+    "c": "Développement",
+    "d": "Disciplines de conception centrées sur l'expérience utilisateur (UX) et l'interface visuelle (UI)."
+  },
+  {
+    "t": "Responsive Design",
+    "c": "Développement",
+    "d": "Approche de conception web qui adapte automatiquement l'affichage à la taille de l'écran utilisé."
+  },
+  {
+    "t": "Serveur",
+    "c": "Système",
+    "d": "Ordinateur ou programme qui fournit des ressources ou services à d'autres machines sur un réseau."
+  },
+  {
+    "t": "Protocole",
+    "c": "Réseau",
+    "d": "Ensemble de règles définissant comment les données sont échangées entre systèmes."
+  },
+  {
+    "t": "Node.js",
+    "c": "Développement",
+    "d": "Environnement d'exécution JavaScript côté serveur, basé sur le moteur V8 de Chrome.",
+    "install": [
+      {
+        "m": "apt (Debian/Ubuntu)",
+        "cmd": "sudo apt install nodejs npm -y"
+      },
+      {
+        "m": "dnf (Fedora)",
+        "cmd": "sudo dnf install nodejs -y"
+      },
+      {
+        "m": "pacman (Arch)",
+        "cmd": "sudo pacman -S nodejs npm"
+      }
+    ]
+  },
+  {
+    "t": "Python 3",
+    "c": "Développement",
+    "d": "Langage de programmation polyvalent, réputé pour sa syntaxe claire et sa large communauté.",
+    "install": [
+      {
+        "m": "apt (Debian/Ubuntu)",
+        "cmd": "sudo apt install python3 python3-pip -y"
+      },
+      {
+        "m": "dnf (Fedora)",
+        "cmd": "sudo dnf install python3 python3-pip -y"
+      },
+      {
+        "m": "pacman (Arch)",
+        "cmd": "sudo pacman -S python python-pip"
+      }
+    ]
+  },
+  {
+    "t": "Visual Studio Code",
+    "c": "Développement",
+    "d": "Éditeur de code source gratuit et extensible, très utilisé par les développeurs.",
+    "install": [
+      {
+        "m": "snap (toutes distros)",
+        "cmd": "sudo snap install code --classic"
+      },
+      {
+        "m": "apt via dépôt Microsoft",
+        "cmd": "sudo apt install software-properties-common apt-transport-https wget -y"
+      }
+    ]
+  },
+  {
+    "t": "Nginx",
+    "c": "Système",
+    "d": "Serveur web léger et performant, également utilisé comme reverse proxy ou load balancer.",
+    "install": [
+      {
+        "m": "apt (Debian/Ubuntu)",
+        "cmd": "sudo apt install nginx -y"
+      },
+      {
+        "m": "dnf (Fedora)",
+        "cmd": "sudo dnf install nginx -y"
+      },
+      {
+        "m": "pacman (Arch)",
+        "cmd": "sudo pacman -S nginx"
+      }
+    ]
+  },
+  {
+    "t": "Vim",
+    "c": "Système",
+    "d": "Éditeur de texte en ligne de commande, réputé pour sa rapidité et ses raccourcis clavier."
+  },
+  {
+    "t": "PostgreSQL",
+    "c": "Données",
+    "d": "Système de gestion de base de données relationnelle open source, réputé pour sa robustesse.",
+    "install": [
+      {
+        "m": "apt (Debian/Ubuntu)",
+        "cmd": "sudo apt install postgresql -y"
+      },
+      {
+        "m": "dnf (Fedora)",
+        "cmd": "sudo dnf install postgresql-server -y"
+      },
+      {
+        "m": "pacman (Arch)",
+        "cmd": "sudo pacman -S postgresql"
+      }
+    ]
+  },
+  {
+    "t": "MySQL",
+    "c": "Données",
+    "d": "Système de gestion de base de données relationnelle très répandu, notamment pour le web.",
+    "install": [
+      {
+        "m": "apt (Debian/Ubuntu)",
+        "cmd": "sudo apt install mysql-server -y"
+      },
+      {
+        "m": "dnf (Fedora)",
+        "cmd": "sudo dnf install mysql-server -y"
+      },
+      {
+        "m": "pacman (Arch)",
+        "cmd": "sudo pacman -S mysql"
+      }
+    ]
+  },
+  {
+    "t": "Ansible",
+    "c": "DevOps",
+    "d": "Outil d'automatisation qui permet de déployer et configurer des serveurs à distance sans agent.",
+    "install": [
+      {
+        "m": "apt (Debian/Ubuntu)",
+        "cmd": "sudo apt install ansible -y"
+      },
+      {
+        "m": "dnf (Fedora)",
+        "cmd": "sudo dnf install ansible -y"
+      },
+      {
+        "m": "pip (universel)",
+        "cmd": "pip3 install --user ansible"
+      }
+    ]
+  },
+  {
+    "t": "Wireshark",
+    "c": "Sécurité",
+    "d": "Analyseur de trafic réseau utilisé pour inspecter les paquets de données en détail.",
+    "install": [
+      {
+        "m": "apt (Debian/Ubuntu)",
+        "cmd": "sudo apt install wireshark -y"
+      },
+      {
+        "m": "dnf (Fedora)",
+        "cmd": "sudo dnf install wireshark -y"
+      },
+      {
+        "m": "pacman (Arch)",
+        "cmd": "sudo pacman -S wireshark-qt"
+      }
+    ]
+  },
+  {
+    "t": "cURL",
+    "c": "Réseau",
+    "d": "Outil en ligne de commande pour transférer des données via des protocoles comme HTTP ou FTP.",
+    "install": [
+      {
+        "m": "apt (Debian/Ubuntu)",
+        "cmd": "sudo apt install curl -y"
+      },
+      {
+        "m": "dnf (Fedora)",
+        "cmd": "sudo dnf install curl -y"
+      },
+      {
+        "m": "pacman (Arch)",
+        "cmd": "sudo pacman -S curl"
+      }
+    ]
+  }
+]

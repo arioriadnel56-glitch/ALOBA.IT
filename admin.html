@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aloba-IT — Espace admin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e0e0e; --panel:#1a1a1a; --panel2:#212121;
+  --text:#f5f5f5; --muted:#a3a3a3; --hair:rgba(245,245,245,.14);
+  --orange:#f3781b; --orange-dark:#f98e3c; --red:#e5484d; --green:#3ddc84;
+  --display:'Poppins',sans-serif; --sans:'Inter',sans-serif;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;}
+.wrap{max-width:720px;margin:0 auto;padding:28px 20px 70px;}
+h1{font-family:var(--display);font-size:22px;margin:0 0 4px;}
+h1 span{color:var(--orange);}
+.muted{color:var(--muted);font-size:13px;margin:0 0 24px;}
+.card{background:var(--panel);border:1px solid var(--hair);border-radius:14px;padding:20px 22px;margin-bottom:20px;}
+.card h2{font-family:var(--display);font-size:15px;margin:0 0 14px;}
+label{display:block;font-size:12px;color:var(--muted);margin:12px 0 5px;}
+input,textarea,select{
+  width:100%;background:var(--panel2);border:1px solid var(--hair);color:var(--text);
+  padding:10px 12px;border-radius:8px;font-family:var(--sans);font-size:13.5px;
+}
+textarea{resize:vertical;min-height:70px;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+button{cursor:pointer;font-family:var(--sans);font-weight:600;border:none;border-radius:8px;padding:11px 18px;font-size:13.5px;}
+.btn-primary{background:var(--orange);color:#141414;}
+.btn-primary:hover{background:var(--orange-dark);}
+.btn-ghost{background:none;border:1px solid var(--hair);color:var(--text);}
+.btn-danger{background:none;border:1px solid var(--red);color:var(--red);padding:5px 10px;font-size:12px;}
+.actions{display:flex;gap:10px;margin-top:16px;}
+.status{margin-top:14px;font-size:13px;padding:10px 12px;border-radius:8px;display:none;}
+.status.ok{display:block;background:rgba(61,220,132,.12);color:var(--green);}
+.status.err{display:block;background:rgba(229,72,77,.12);color:var(--red);}
+.list-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--hair);gap:10px;}
+.list-item:last-child{border-bottom:none;}
+.list-item .li-title{font-size:13.5px;}
+.list-item .li-sub{font-size:11px;color:var(--muted);}
+.tabs2{display:flex;gap:8px;margin-bottom:20px;}
+.tabs2 button{background:var(--panel);border:1px solid var(--hair);color:var(--muted);}
+.tabs2 button.active{background:var(--orange);color:#141414;border-color:var(--orange);}
+.gate{max-width:340px;margin:80px auto;text-align:center;}
+.installrow{border:1px solid var(--hair);border-radius:8px;padding:10px;margin-top:8px;position:relative;}
+.installrow .rm{position:absolute;top:6px;right:6px;}
+#appZone{display:none;}
+.small{font-size:11.5px;color:var(--muted);margin-top:6px;}
+a{color:var(--orange-dark);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="gate" id="gateZone">
+    <h1>Aloba<span>-IT</span> · Admin</h1>
+    <p class="muted">Espace réservé. Ce mot de passe protège juste l'accès au formulaire dans ce navigateur — la vraie sécurité repose sur ton jeton GitHub, à garder secret.</p>
+    <input type="password" id="gatePass" placeholder="Mot de passe admin">
+    <div class="actions" style="justify-content:center;">
+      <button class="btn-primary" id="gateBtn">Entrer</button>
+    </div>
+    <p class="status err" id="gateErr">Mot de passe incorrect.</p>
+  </div>
+
+  <div id="appZone">
+    <h1>Aloba<span>-IT</span> · Admin</h1>
+    <p class="muted">Ajoute des termes ou des articles — la publication met à jour directement <code>data/terms.json</code> et <code>data/posts.json</code> sur ton dépôt GitHub.</p>
+
+    <div class="card">
+      <h2>⚙️ Connexion à Supabase (PostgreSQL)</h2>
+      <label>URL du projet</label>
+      <input id="cfgUrl" placeholder="https://xxxxx.supabase.co">
+      <label>Clé "service_role" (Project Settings → API → service_role)</label>
+      <input type="password" id="cfgServiceKey" placeholder="eyJhbGciOi...">
+      <p class="small">⚠️ Cette clé contourne toutes les protections (RLS) — elle ne doit JAMAIS être mise sur le site public, seulement ici, dans cet espace admin. Elle est stockée uniquement dans ce navigateur (localStorage) et envoyée uniquement à votre projet Supabase.</p>
+      <div class="actions">
+        <button class="btn-primary" id="saveCfg">Enregistrer la configuration</button>
+        <button class="btn-ghost" id="clearCfg">Effacer</button>
+      </div>
+      <p class="status" id="cfgStatus"></p>
+    </div>
+
+    <div class="tabs2">
+      <button class="active" id="tabTerms">Termes</button>
+      <button id="tabPosts">Articles</button>
+    </div>
+
+    <div id="termsPanel">
+      <div class="card">
+        <h2>➕ Ajouter un terme</h2>
+        <label>Nom du terme</label>
+        <input id="ntTitle" placeholder="Ex: Reverse Proxy">
+        <label>Catégorie</label>
+        <select id="ntCat">
+          <option>Réseau</option><option>Système</option><option>Cloud</option><option>Sécurité</option>
+          <option>Données</option><option>DevOps</option><option>Développement</option><option>Matériel</option><option>IA</option>
+        </select>
+        <label>Définition</label>
+        <textarea id="ntDef" placeholder="Définition claire et courte…"></textarea>
+        <label>Commandes d'installation Linux (optionnel — pour un logiciel)</label>
+        <div id="installRows"></div>
+        <button class="btn-ghost" id="addInstallRow" style="margin-top:8px;">+ Ajouter une commande</button>
+        <div class="actions">
+          <button class="btn-primary" id="publishTerm">Publier ce terme sur GitHub</button>
+        </div>
+        <p class="status" id="termStatus"></p>
+      </div>
+      <div class="card">
+        <h2>📋 Termes existants (<span id="termCount">0</span>)</h2>
+        <div id="termsList"></div>
+      </div>
+    </div>
+
+    <div id="postsPanel" style="display:none;">
+      <div class="card">
+        <h2>➕ Ajouter un article</h2>
+        <div class="row2">
+          <div><label>Étiquette</label><input id="npTag" placeholder="Tutoriel, Actualité…"></div>
+          <div><label>Date</label><input id="npDate" placeholder="22 sept. 2026"></div>
+        </div>
+        <label>Titre</label>
+        <input id="npTitle" placeholder="Titre de l'article">
+        <label>Résumé (affiché dans la liste)</label>
+        <textarea id="npExcerpt" placeholder="1 à 2 phrases d'accroche…"></textarea>
+        <label>Contenu complet</label>
+        <textarea id="npContent" style="min-height:120px;" placeholder="Texte complet de l'article…"></textarea>
+        <div class="actions">
+          <button class="btn-primary" id="publishPost">Publier cet article sur GitHub</button>
+        </div>
+        <p class="status" id="postStatus"></p>
+      </div>
+      <div class="card">
+        <h2>📋 Articles existants (<span id="postCount">0</span>)</h2>
+        <div id="postsList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ADMIN_PASSWORD = "aloba2026"; // à changer si besoin — protection légère côté navigateur uniquement
+const el = id => document.getElementById(id);
+
+// ---------- Portail d'accès ----------
+if(sessionStorage.getItem('aloba-admin-ok') === '1'){
+  el('gateZone').style.display = 'none';
+  el('appZone').style.display = 'block';
+}
+el('gateBtn').addEventListener('click', ()=>{
+  if(el('gatePass').value === ADMIN_PASSWORD){
+    sessionStorage.setItem('aloba-admin-ok','1');
+    el('gateZone').style.display = 'none';
+    el('appZone').style.display = 'block';
+    loadConfig();
+    refreshLists();
+  }else{
+    el('gateErr').style.display = 'block';
+  }
+});
+
+// ---------- Configuration GitHub ----------
+function getConfig(){
+  try{ return JSON.parse(localStorage.getItem('aloba-admin-config') || '{}'); }
+  catch(e){ return {}; }
+}
+function loadConfig(){
+  const c = getConfig();
+  el('cfgUrl').value = c.url || '';
+  el('cfgServiceKey').value = c.serviceKey || '';
+}
+el('saveCfg').addEventListener('click', ()=>{
+  const cfg = {
+    url: el('cfgUrl').value.trim().replace(/\/$/,''),
+    serviceKey: el('cfgServiceKey').value.trim()
+  };
+  localStorage.setItem('aloba-admin-config', JSON.stringify(cfg));
+  showStatus('cfgStatus', true, 'Configuration enregistrée dans ce navigateur.');
+  refreshLists();
+});
+el('clearCfg').addEventListener('click', ()=>{
+  localStorage.removeItem('aloba-admin-config');
+  loadConfig();
+  showStatus('cfgStatus', true, 'Configuration effacée.');
+});
+
+function showStatus(id, ok, msg){
+  const box = el(id);
+  box.textContent = msg;
+  box.className = 'status ' + (ok ? 'ok' : 'err');
+}
+
+// ---------- Appels API Supabase (REST auto-générée sur PostgreSQL) ----------
+function supaHeaders(){
+  const cfg = getConfig();
+  return {
+    apikey: cfg.serviceKey,
+    Authorization: `Bearer ${cfg.serviceKey}`,
+    'Content-Type': 'application/json',
+    Prefer: 'return=representation'
+  };
+}
+async function supaSelect(table, order='id.asc'){
+  const cfg = getConfig();
+  const res = await fetch(`${cfg.url}/rest/v1/${table}?select=*&order=${order}`, { headers: supaHeaders() });
+  if(!res.ok) throw new Error(`Lecture impossible sur "${table}" (${res.status}). Vérifie l'URL et la clé service_role.`);
+  return res.json();
+}
+async function supaInsert(table, row){
+  const cfg = getConfig();
+  const res = await fetch(`${cfg.url}/rest/v1/${table}`, { method:'POST', headers: supaHeaders(), body: JSON.stringify(row) });
+  if(!res.ok){
+    const err = await res.json().catch(()=>({}));
+    throw new Error(err.message || `Publication impossible (${res.status}).`);
+  }
+  return res.json();
+}
+async function supaDelete(table, id){
+  const cfg = getConfig();
+  const res = await fetch(`${cfg.url}/rest/v1/${table}?id=eq.${id}`, { method:'DELETE', headers: supaHeaders() });
+  if(!res.ok) throw new Error(`Suppression impossible (${res.status}).`);
+}
+
+// ---------- Onglets ----------
+el('tabTerms').addEventListener('click', ()=>{
+  el('tabTerms').classList.add('active'); el('tabPosts').classList.remove('active');
+  el('termsPanel').style.display='block'; el('postsPanel').style.display='none';
+});
+el('tabPosts').addEventListener('click', ()=>{
+  el('tabPosts').classList.add('active'); el('tabTerms').classList.remove('active');
+  el('postsPanel').style.display='block'; el('termsPanel').style.display='none';
+});
+
+// ---------- Lignes d'installation dynamiques ----------
+function addInstallRow(m='', cmd=''){
+  const div = document.createElement('div');
+  div.className = 'installrow';
+  div.innerHTML = `
+    <button class="btn-danger rm">✕</button>
+    <label>Gestionnaire (ex: apt (Debian/Ubuntu))</label>
+    <input class="im" value="${m}">
+    <label>Commande</label>
+    <input class="icmd" value="${cmd}">`;
+  div.querySelector('.rm').addEventListener('click', ()=> div.remove());
+  el('installRows').appendChild(div);
+}
+el('addInstallRow').addEventListener('click', ()=> addInstallRow());
+
+// ---------- Publier un terme ----------
+el('publishTerm').addEventListener('click', async ()=>{
+  const cfg = getConfig();
+  if(!cfg.url || !cfg.serviceKey){ showStatus('termStatus', false, 'Configure la connexion Supabase ci-dessus avant de publier.'); return; }
+  const title = el('ntTitle').value.trim();
+  const def = el('ntDef').value.trim();
+  if(!title || !def){ showStatus('termStatus', false, 'Le nom et la définition sont obligatoires.'); return; }
+
+  const installs = [...document.querySelectorAll('#installRows .installrow')].map(r=>({
+    m: r.querySelector('.im').value.trim(),
+    cmd: r.querySelector('.icmd').value.trim()
+  })).filter(i=>i.m && i.cmd);
+
+  const newTerm = { t: title, c: el('ntCat').value, d: def, install: installs.length ? installs : null };
+
+  showStatus('termStatus', true, 'Publication en cours…');
+  try{
+    await supaInsert('terms', newTerm);
+    showStatus('termStatus', true, `"${title}" publié ! Visible immédiatement sur le site.`);
+    el('ntTitle').value=''; el('ntDef').value=''; el('installRows').innerHTML='';
+    refreshLists();
+  }catch(e){
+    showStatus('termStatus', false, e.message);
+  }
+});
+
+// ---------- Publier un article ----------
+el('publishPost').addEventListener('click', async ()=>{
+  const cfg = getConfig();
+  if(!cfg.url || !cfg.serviceKey){ showStatus('postStatus', false, 'Configure la connexion Supabase ci-dessus avant de publier.'); return; }
+  const title = el('npTitle').value.trim();
+  const excerpt = el('npExcerpt').value.trim();
+  const content_ = el('npContent').value.trim();
+  if(!title || !excerpt || !content_){ showStatus('postStatus', false, 'Titre, résumé et contenu sont obligatoires.'); return; }
+
+  const newPost = {
+    tag: el('npTag').value.trim() || 'Actualité',
+    date: el('npDate').value.trim() || new Date().toLocaleDateString('fr-FR', {day:'numeric',month:'short',year:'numeric'}),
+    title, excerpt, content: content_
+  };
+
+  showStatus('postStatus', true, 'Publication en cours…');
+  try{
+    await supaInsert('posts', newPost);
+    showStatus('postStatus', true, `"${title}" publié ! Visible immédiatement sur le site.`);
+    el('npTitle').value=''; el('npExcerpt').value=''; el('npContent').value=''; el('npTag').value=''; el('npDate').value='';
+    refreshLists();
+  }catch(e){
+    showStatus('postStatus', false, e.message);
+  }
+});
+
+// ---------- Listes + suppression ----------
+async function refreshLists(){
+  const cfg = getConfig();
+  if(!cfg.url || !cfg.serviceKey) return;
+  try{
+    const terms = await supaSelect('terms', 'id.asc');
+    el('termCount').textContent = terms.length;
+    el('termsList').innerHTML = terms.map(t=>`
+      <div class="list-item">
+        <div><div class="li-title">${t.t}</div><div class="li-sub">${t.c}</div></div>
+        <button class="btn-danger" data-id="${t.id}" data-kind="term">Supprimer</button>
+      </div>`).join('');
+  }catch(e){ /* config pas encore valide, on ignore */ }
+
+  try{
+    const posts = await supaSelect('posts', 'id.desc');
+    el('postCount').textContent = posts.length;
+    el('postsList').innerHTML = posts.map(p=>`
+      <div class="list-item">
+        <div><div class="li-title">${p.title}</div><div class="li-sub">${p.tag} · ${p.date}</div></div>
+        <button class="btn-danger" data-id="${p.id}" data-kind="post">Supprimer</button>
+      </div>`).join('');
+  }catch(e){ /* idem */ }
+
+  document.querySelectorAll('.btn-danger[data-kind]').forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      const kind = btn.dataset.kind;
+      const id = btn.dataset.id;
+      if(!confirm('Supprimer définitivement cet élément du site ?')) return;
+      const table = kind === 'term' ? 'terms' : 'posts';
+      const statusId = kind === 'term' ? 'termStatus' : 'postStatus';
+      try{
+        await supaDelete(table, id);
+        showStatus(statusId, true, 'Supprimé — visible immédiatement sur le site.');
+        refreshLists();
+      }catch(e){
+        showStatus(statusId, false, e.message);
+      }
+    });
+  });
+}
+
+if(sessionStorage.getItem('aloba-admin-ok') === '1'){
+  loadConfig();
+  refreshLists();
+}
+</script>
+</body>
+</html>
